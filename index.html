@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="O'Crousti Poulet Saint-Étienne – Poulet frit croustillant à emporter ou en livraison. Menu Solo à 6,90€. Commandez maintenant !" />
+  <title>O'Crousti Poulet | Saint-Étienne</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet" />
+
+  <style>
+    /* =============================================
+       CSS RESET & VARIABLES
+    ============================================= */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg-deep:      #0A0A0A;
+      --bg-card:      #141414;
+      --bg-card2:     #1C1C1C;
+      --gold:         #FFC107;
+      --gold-bright:  #FFD700;
+      --gold-dim:     rgba(255, 193, 7, 0.15);
+      --gold-glow:    rgba(255, 193, 7, 0.35);
+      --white:        #FFFFFF;
+      --grey:         #CCCCCC;
+      --grey-dim:     #888888;
+      --radius:       14px;
+      --radius-sm:    8px;
+      --transition:   0.25s ease;
+      --font-main:    'Montserrat', sans-serif;
+      --font-accent:  'Pacifico', cursive;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-deep);
+      color: var(--white);
+      font-family: var(--font-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; display: block; }
+    a   { text-decoration: none; color: inherit; }
+
+    /* =============================================
+       STICKY HEADER
+    ============================================= */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10, 10, 10, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 193, 7, 0.2);
+      padding: 0 20px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: var(--font-accent);
+      font-size: 1.35rem;
+      line-height: 1;
+      letter-spacing: 0.5px;
+    }
+
+    .logo span:first-child { color: var(--white); }
+    .logo span:last-child  { color: var(--gold); }
+
+    .btn-call-header {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--gold);
+      color: #000;
+      font-family: var(--font-main);
+      font-weight: 800;
+      font-size: 0.82rem;
+      padding: 10px 18px;
+      border-radius: 50px;
+      letter-spacing: 0.3px;
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+      white-space: nowrap;
+    }
+
+    .btn-call-header:hover {
+      background: var(--gold-bright);
+      box-shadow: 0 0 20px var(--gold-glow);
+      transform: translateY(-1px);
+    }
+
+    .btn-call-header:active { transform: translateY(0); }
+
+    /* =============================================
+       HERO SECTION
+    ============================================= */
+    .hero {
+      position: relative;
+      min-height: 92vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 24px 80px;
+      overflow: hidden;
+    }
+
+    /* Animated radial background */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 55% at 50% 30%, rgba(255,193,7,0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 40% at 80% 80%, rgba(255,120,0,0.07) 0%, transparent 60%),
+        #0A0A0A;
+      z-index: 0;
+    }
+
+    /* Subtle noise texture */
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: 0.5;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .hero-content { position: relative; z-index: 1; max-width: 640px; }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--gold-dim);
+      border: 1px solid rgba(255,193,7,0.4);
+      color: var(--gold);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 50px;
+      margin-bottom: 24px;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 7vw, 3.6rem);
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      animation: fadeUp 0.7s 0.1s ease both;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 3vw, 1.2rem);
+      color: var(--grey);
+      font-weight: 400;
+      margin-bottom: 42px;
+      animation: fadeUp 0.7s 0.2s ease both;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      align-items: center;
+      animation: fadeUp 0.7s 0.3s ease both;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: var(--gold);
+      color: #000;
+      font-family: var(--font-main);
+      font-weight: 900;
+      font-size: 1.1rem;
+      padding: 18px 38px;
+      border-radius: 50px;
+      width: 100%;
+      max-width: 380px;
+      transition: all var(--transition);
+      box-shadow: 0 4px 24px rgba(255,193,7,0.3);
+      letter-spacing: 0.2px;
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-bright);
+      box-shadow: 0 6px 36px rgba(255,193,7,0.5);
+      transform: translateY(-2px) scale(1.02);
+    }
+
+    .btn-primary:active { transform: translateY(0) scale(0.99); }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: transparent;
+      color: var(--white);
+      font-family: var(--font-main);
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 16px 36px;
+      border-radius: 50px;
+      width: 100%;
+      max-width: 380px;
+      border: 2px solid rgba(255,255,255,0.25);
+      transition: all var(--transition);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      box-shadow: 0 0 18px rgba(255,193,7,0.15);
+      transform: translateY(-1px);
+    }
+
+    /* Scroll indicator */
+    .scroll-hint {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: var(--grey-dim);
+      font-size: 0.7rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      animation: pulse 2s infinite;
+      z-index: 1;
+    }
+
+    .scroll-hint svg { animation: bounce 1.5s infinite; }
+
+    /* =============================================
+       SECTION SHARED STYLES
+    ============================================= */
+    .section {
+      padding: 72px 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: clamp(1.6rem, 5vw, 2.4rem);
+      font-weight: 900;
+      margin-bottom: 40px;
+      line-height: 1.2;
+    }
+
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,193,7,0.3), transparent);
+      margin: 0;
+    }
+
+    /* =============================================
+       BEST SELLER CARD
+    ============================================= */
+    .bestseller-card {
+      position: relative;
+      background: var(--bg-card);
+      border: 2px solid var(--gold);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      overflow: hidden;
+      box-shadow: 0 0 40px rgba(255,193,7,0.15), inset 0 0 60px rgba(255,193,7,0.04);
+      margin-bottom: 48px;
+    }
+
+    .bestseller-card::before {
+      content: '⭐ BEST SELLER';
+      position: absolute;
+      top: 16px;
+      right: -30px;
+      background: var(--gold);
+      color: #000;
+      font-size: 0.65rem;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      padding: 5px 40px;
+      transform: rotate(40deg);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .card-title {
+      font-family: var(--font-accent);
+      font-size: clamp(1.5rem, 5vw, 2rem);
+      color: var(--white);
+      line-height: 1.2;
+    }
+
+    .card-price {
+      font-size: clamp(2.4rem, 8vw, 3.5rem);
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .card-price sup {
+      font-size: 0.45em;
+      vertical-align: super;
+      font-weight: 700;
+    }
+
+    .card-includes {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .card-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.95rem;
+      color: var(--grey);
+    }
+
+    .card-item-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--gold);
+      border-radius: 50%;
+      margin-top: 7px;
+      flex-shrink: 0;
+    }
+
+    .card-item strong { color: var(--white); }
+
+    /* =============================================
+       MENU GRID
+    ============================================= */
+    .menu-section-title {
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--grey-dim);
+      margin-bottom: 16px;
+      margin-top: 40px;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .menu-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--bg-card);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--radius-sm);
+      padding: 16px 20px;
+      transition: border-color var(--transition), background var(--transition), transform var(--transition);
+    }
+
+    .menu-item:hover {
+      border-color: rgba(255,193,7,0.3);
+      background: var(--bg-card2);
+      transform: translateX(4px);
+    }
+
+    .menu-item-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .menu-emoji {
+      font-size: 1.4rem;
+      width: 36px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .menu-name {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--white);
+    }
+
+    .menu-desc {
+      font-size: 0.78rem;
+      color: var(--grey-dim);
+      margin-top: 2px;
+    }
+
+    .menu-price {
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--gold);
+      white-space: nowrap;
+      margin-left: 12px;
+    }
+
+    /* =============================================
+       SIDES GRID (2 cols on small screens too)
+    ============================================= */
+    .sides-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .side-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--bg-card);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: var(--radius-sm);
+      padding: 14px 16px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--grey);
+      transition: border-color var(--transition), color var(--transition);
+    }
+
+    .side-item:hover {
+      border-color: rgba(255,193,7,0.25);
+      color: var(--white);
+    }
+
+    .side-emoji {
+      font-size: 1.2rem;
+    }
+
+    /* =============================================
+       WHY US / TRUST STRIP
+    ============================================= */
+    .trust-strip {
+      background: var(--bg-card);
+      border-top: 1px solid rgba(255,193,7,0.12);
+      border-bottom: 1px solid rgba(255,193,7,0.12);
+      padding: 36px 20px;
+    }
+
+    .trust-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      text-align: center;
+    }
+
+    .trust-item-icon {
+      font-size: 2rem;
+      margin-bottom: 8px;
+    }
+
+    .trust-item-label {
+      font-weight: 800;
+      font-size: 0.9rem;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+
+    .trust-item-desc {
+      font-size: 0.75rem;
+      color: var(--grey-dim);
+    }
+
+    /* =============================================
+       CTA BAND
+    ============================================= */
+    .cta-band {
+      background: var(--gold);
+      padding: 52px 24px;
+      text-align: center;
+    }
+
+    .cta-band h2 {
+      font-family: var(--font-accent);
+      font-size: clamp(1.7rem, 5vw, 2.5rem);
+      color: #000;
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+
+    .cta-band p {
+      color: rgba(0,0,0,0.6);
+      font-size: 1rem;
+      margin-bottom: 28px;
+      font-weight: 600;
+    }
+
+    .btn-dark {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #000;
+      color: var(--gold);
+      font-family: var(--font-main);
+      font-weight: 900;
+      font-size: 1.1rem;
+      padding: 18px 42px;
+      border-radius: 50px;
+      transition: all var(--transition);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+
+    .btn-dark:hover {
+      background: #111;
+      box-shadow: 0 6px 32px rgba(0,0,0,0.5);
+      transform: translateY(-2px) scale(1.02);
+    }
+
+    .btn-dark:active { transform: translateY(0); }
+
+    /* =============================================
+       FOOTER / INFO
+    ============================================= */
+    .footer {
+      padding: 60px 20px 40px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      margin-bottom: 48px;
+    }
+
+    .footer-logo {
+      font-family: var(--font-accent);
+      font-size: 1.6rem;
+      margin-bottom: 12px;
+    }
+
+    .footer-logo span:first-child { color: var(--white); }
+    .footer-logo span:last-child  { color: var(--gold); }
+
+    .footer-tagline {
+      color: var(--grey-dim);
+      font-size: 0.88rem;
+      max-width: 280px;
+    }
+
+    .footer-section-title {
+      font-weight: 800;
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .hours-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .hours-list li {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.88rem;
+      gap: 24px;
+    }
+
+    .hours-day { color: var(--grey); }
+    .hours-time { color: var(--white); font-weight: 600; }
+    .hours-closed { color: var(--grey-dim); font-style: italic; }
+
+    .address-block {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .address-line {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      font-size: 0.9rem;
+      color: var(--grey);
+    }
+
+    .address-line-icon {
+      color: var(--gold);
+      font-size: 1.1rem;
+      margin-top: 1px;
+      flex-shrink: 0;
+    }
+
+    .btn-maps {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold-dim);
+      border: 1px solid rgba(255,193,7,0.4);
+      color: var(--gold);
+      font-family: var(--font-main);
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 12px 22px;
+      border-radius: 50px;
+      transition: all var(--transition);
+      margin-top: 8px;
+      width: fit-content;
+    }
+
+    .btn-maps:hover {
+      background: var(--gold);
+      color: #000;
+      box-shadow: 0 0 20px var(--gold-glow);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: center;
+      text-align: center;
+    }
+
+    .footer-bottom p {
+      font-size: 0.75rem;
+      color: var(--grey-dim);
+    }
+
+    /* =============================================
+       FLOATING CALL BUTTON (mobile)
+    ============================================= */
+    .fab-call {
+      position: fixed;
+      bottom: 24px;
+      right: 20px;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--gold);
+      color: #000;
+      font-family: var(--font-main);
+      font-weight: 900;
+      font-size: 0.9rem;
+      padding: 14px 22px;
+      border-radius: 50px;
+      box-shadow: 0 6px 32px rgba(255,193,7,0.4);
+      transition: all var(--transition);
+      animation: fabPulse 2.5s infinite;
+    }
+
+    .fab-call:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 40px rgba(255,193,7,0.6);
+    }
+
+    .fab-call:active { transform: scale(0.97); }
+
+    /* =============================================
+       ANIMATIONS
+    ============================================= */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.5; }
+      50%       { opacity: 1; }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(6px); }
+    }
+
+    @keyframes fabPulse {
+      0%, 100% { box-shadow: 0 6px 32px rgba(255,193,7,0.4); }
+      50%       { box-shadow: 0 6px 42px rgba(255,193,7,0.7); }
+    }
+
+    /* =============================================
+       RESPONSIVE — TABLET & DESKTOP
+    ============================================= */
+    @media (min-width: 600px) {
+      .menu-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero-ctas {
+        flex-direction: row;
+        justify-content: center;
+      }
+
+      .btn-primary,
+      .btn-secondary {
+        width: auto;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .footer-grid {
+        grid-template-columns: 1.4fr 1fr 1fr;
+        gap: 48px;
+      }
+
+      .footer-bottom {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+      }
+
+      .fab-call {
+        display: none; /* redundant on desktop – header button suffices */
+      }
+    }
+
+    @media (min-width: 900px) {
+      .bestseller-card {
+        padding: 40px 44px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =============================================
+       FLOATING CALL BUTTON (mobile only)
+  ============================================= -->
+  <a href="tel:+33712356789" class="fab-call" aria-label="Appeler le restaurant">
+    📞 Commander
+  </a>
+
+  <!-- =============================================
+       STICKY HEADER
+  ============================================= -->
+  <header class="site-header" role="banner">
+    <div class="logo" aria-label="O'Crousti Poulet">
+      <span>O'Crousti </span><span>Poulet</span>
+    </div>
+    <a href="tel:+33XXXXXXXXX" class="btn-call-header" aria-label="Appeler pour commander">
+      📞 Appeler
+    </a>
+  </header>
+
+  <!-- =============================================
+       HERO SECTION
+  ============================================= -->
+  <section class="hero" aria-labelledby="hero-heading">
+    <div class="hero-content">
+      <span class="hero-badge">🔥 Le meilleur poulet à Saint-Étienne</span>
+
+      <h1 id="hero-heading">
+        Le poulet le plus<br /><em>croustillant</em><br />de Saint-Étienne
+      </h1>
+
+      <p class="hero-sub"> À emporter · En livraison</p>
+
+      <div class="hero-ctas">
+        <a href="tel:+3371234567889" class="btn-primary" aria-label="Commander par téléphone">
+          📞 Commander à emporter
+        </a>
+        <a href="https://www.ubereats.com/fr/store/o-crousti-poulet-saint-etienne/AoUgl17zUKOYDgtVKwREiQ?diningMode=PICKUP&utm_campaign=CM2508147-search-free-nonbrand-google-pas_e_all_acq_Global&utm_medium=search-free-nonbrand&utm_source=google-pas&rwg_token=AFd1xnFPNsI6M-9gH6K2Ncw_WH9uDqMGqgCjc5sij1cGsTEFMXm7-JKawVhn53S6svDpVBHsvmgtekUlHlKleaoC76ZbdwzIHg%3D%3D" target="_blank" rel="noopener noreferrer" class="btn-secondary" aria-label="Commander sur Uber Eats">
+          🛵 Commander sur Uber Eats
+        </a>
+      </div>
+    </div>
+
+    <div class="scroll-hint" aria-hidden="true">
+      <span>Menu</span>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+    </div>
+  </section>
+
+  <div class="divider" role="separator"></div>
+
+  <!-- =============================================
+       TRUST STRIP
+  ============================================= -->
+  <div class="trust-strip" aria-label="Nos engagements">
+    <div class="trust-inner">
+      <div class="trust-item">
+        <div class="trust-item-icon">🍗</div>
+        <div class="trust-item-label">100% Frais</div>
+        <div class="trust-item-desc">Poulet frais, jamais surgelé</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-item-icon">⚡</div>
+        <div class="trust-item-label">Rapide</div>
+        <div class="trust-item-desc">Prêt en quelques minutes</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-item-icon">💰</div>
+        <div class="trust-item-label">Prix Juste</div>
+        <div class="trust-item-desc">Menu complet dès 6,90€</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider" role="separator"></div>
+
+  <!-- =============================================
+       MENU SECTION
+  ============================================= -->
+  <main>
+    <section class="section" aria-labelledby="menu-heading">
+      <p class="section-label">Notre Carte</p>
+      <h2 class="section-title" id="menu-heading">Le Menu</h2>
+
+      <!-- Best Seller Card -->
+      <article class="bestseller-card" aria-label="Menu Solo Inclus – Notre best seller">
+        <div class="card-header">
+          <div>
+            <h3 class="card-title">🔥 Menu Solo Best Seller</h3>
+          </div>
+          <div class="card-price">
+            <sup>€</sup>6,90
+          </div>
+        </div>
+
+        <div class="card-includes">
+          <div class="card-item">
+            <div class="card-item-dot"></div>
+            <span><strong>1 pièce au choix</strong> (cuisse / 3 pilons / 4 ailes)</span>
+          </div>
+          <div class="card-item">
+            <div class="card-item-dot"></div>
+            <span><strong>+ accompagnement</strong> (frites, riz ou pâtes)</span>
+          </div>
+          <div class="card-item">
+            <div class="card-item-dot"></div>
+            <span><strong>+ boisson offerte</strong></span>
+          </div>
+        </div>
+
+        <p style="margin-top:12px;color:#FFC107;font-weight:700;">
+        🔥 Le plus commandé aujourd’hui
+        </p>
+      </article>
+
+      <!-- Nos Menus (New Block) -->
+      <p class="menu-section-title">🔥 Nos Menus</p>
+      <div class="menu-grid" role="list">
+
+        <div class="menu-item" role="listitem">
+          <div class="menu-item-left">
+            <span class="menu-emoji">🍗</span>
+            <div>
+              <div class="menu-name">Menu Duo</div>
+              <div class="menu-desc">2 personnes – économique</div>
+            </div>
+          </div>
+          <span class="menu-price">12,90€</span>
+        </div>
+
+        <div class="menu-item" role="listitem">
+          <div class="menu-item-left">
+            <span class="menu-emoji">🔥</span>
+            <div>
+              <div class="menu-name">Menu Big Box</div>
+              <div class="menu-desc">8 pièces + 2 accompagnements + boissons</div>
+            </div>
+          </div>
+          <span class="menu-price">17,90€</span>
+        </div>
+
+        <div class="menu-item" role="listitem">
+          <div class="menu-item-left">
+            <span class="menu-emoji">👨‍👩‍👧‍👦</span>
+            <div>
+              <div class="menu-name">Menu Famille</div>
+              <div class="menu-desc">12 pièces + 3 accompagnements</div>
+            </div>
+          </div>
+          <span class="menu-price">24,90€</span>
+        </div>
+
+      </div>
+
+      <!-- Supplements -->
+      <p class="menu-section-title">🍗 Nos Suppléments</p>
+      <div class="menu-grid" role="list">
+
+        <div class="menu-item" role="listitem">
+          <div class="menu-item-left">
+            <span class="menu-emoji">🍗</span>
+            <div>
+              <div class="menu-name">Demi Poulet</div>
+              <div class="menu-desc">Doré & croustillant</div>
+            </div>
+          </div>
+          <span class="menu-price">5,90€</span>
+        </div>
+
+        <div class="menu-item" role="listitem">
+          <div class="menu-item-left">
+            <span class="menu-emoji">🍖</span>
+            <div>
+              <div class="menu-name">Cuisse</div>
+              <div class="menu-desc">Tendre & juteuse</div>
+            </div>
+          </div>
+          <span class="menu-price">2,50€</span>
+        </div>
+
+        <div class="menu-item" role="listitem">
+          <div class="menu-item-left">
+            <span class="menu-emoji">🍗</span>
+            <div>
+              <div class="menu-name">Pilons x3</div>
+              <div class="menu-desc">Parfaits pour grignoter</div>
+            </div>
+          </div>
+          <span class="menu-price">3,50€</span>
+        </div>
+
+        <div class="menu-item" role="listitem">
+          <div class="menu-item-left">
+            <span class="menu-emoji">🍗</span>
+            <div>
+              <div class="menu-name">Ailes x4</div>
+              <div class="menu-desc">Croustillantes à souhait</div>
+            </div>
+          </div>
+          <span class="menu-price">3,50€</span>
+        </div>
+
+        <div class="menu-item" role="listitem">
+          <div class="menu-item-left">
+            <span class="menu-emoji">🥩</span>
+            <div>
+              <div class="menu-name">Blanc de Poulet</div>
+              <div class="menu-desc">Filet tendre & doré</div>
+            </div>
+          </div>
+          <span class="menu-price">3,90€</span>
+        </div>
+
+        <div class="menu-item" role="listitem">
+          <div class="menu-item-left">
+            <span class="menu-emoji">🍩</span>
+            <div>
+              <div class="menu-name">Donut</div>
+              <div class="menu-desc">Pour les gourmands</div>
+            </div>
+          </div>
+          <span class="menu-price">1,90€</span>
+        </div>
+
+        <div class="menu-item" role="listitem">
+          <div class="menu-item-left">
+            <span class="menu-emoji">🌭</span>
+            <div>
+              <div class="menu-name">Saucisse</div>
+              <div class="menu-desc">Croustillante en friture</div>
+            </div>
+          </div>
+          <span class="menu-price">2,00€</span>
+        </div>
+
+      </div>
+
+      <!-- Sides & Drinks -->
+      <p class="menu-section-title">🍟 Accompagnements & Boissons</p>
+      <div class="sides-grid" role="list">
+
+        <div class="side-item" role="listitem">
+          <span class="side-emoji">🍚</span> Riz Oriental
+        </div>
+        <div class="side-item" role="listitem">
+          <span class="side-emoji">🍝</span> Pâtes Crémo
+        </div>
+        <div class="side-item" role="listitem">
+          <span class="side-emoji">🍟</span> Frites
+        </div>
+        <div class="side-item" role="listitem">
+          <span class="side-emoji">🥤</span> Boisson 33cl
+        </div>
+        <div class="side-item" role="listitem">
+          <span class="side-emoji">🍾</span> Bouteille
+        </div>
+        <div class="side-item" role="listitem">
+          <span class="side-emoji">🍰</span> Dessert
+        </div>
+
+      </div>
+
+      <p style="margin-top: 24px; font-size: 0.8rem; color: var(--grey-dim); text-align: center;">
+        Appelez-nous pour connaître les tarifs exacts et les disponibilités du jour.
+      </p>
+    </section>
+  </main>
+
+  <div class="divider" role="separator"></div>
+
+  <!-- =============================================
+       CTA BAND
+  ============================================= -->
+  <section class="cta-band" aria-label="Commander maintenant">
+    <h2>Prêt à craquer ?</h2>
+    <p>Un appel suffit. Votre commande prête en quelques minutes.</p>
+    <a href="tel:+33XXXXXXXXX" class="btn-dark" aria-label="Appeler maintenant pour commander">
+      📞 Commander en 10 secondes
+    </a>
+  </section>
+
+  <!-- =============================================
+       FOOTER / INFO
+  ============================================= -->
+  <footer>
+    <div class="footer" aria-label="Informations du restaurant">
+      <div class="footer-grid">
+
+        <!-- Brand -->
+        <div>
+          <div class="footer-logo">
+            <span>O'Crousti </span><span>Poulet</span>
+          </div>
+          <p class="footer-tagline">
+            Le poulet frit croustillant de Saint-Étienne. Toujours frais, toujours savoureux.
+          </p>
+        </div>
+
+        <!-- Hours -->
+        <div>
+          <p class="footer-section-title">Horaires</p>
+          <ul class="hours-list" aria-label="Horaires d'ouverture">
+            <li>
+              <span class="hours-day">Lun – Dim</span>
+              <span class="hours-time">11:30 – 23:00</span>
+            </li>
+            <li>
+              <span class="hours-day">Samedi</span>
+              <span class="hours-time">11h – 23h</span>
+            </li>
+            <li>
+              <span class="hours-day">Dimanche</span>
+              <span class="hours-time">12h – 22h</span>
+            </li>
+          </ul>
+          <p style="margin-top: 12px; font-size: 0.75rem; color: var(--grey-dim);">
+            ⚠️ Horaires indicatifs, appelez pour confirmer.
+          </p>
+        </div>
+
+        <!-- Address -->
+        <div>
+          <p class="footer-section-title">Nous Trouver</p>
+          <div class="address-block">
+            <div class="address-line">
+              <span class="address-line-icon">📍</span>
+              <span>56 Rue du 11 Novembre<br />42000 Saint-Étienne</span>
+            </div>
+            <div class="address-line">
+              <span class="address-line-icon">📞</span>
+              <span>Appelez pour commander</span>
+            </div>
+            <a
+              href="https://maps.app.goo.gl/51ds9vV5Lcg68zGX7"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-maps"
+              aria-label="Ouvrir dans Google Maps"
+            >
+              📍 Y aller
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom" role="contentinfo">
+        <p>© 2026 O'Crousti Poulet Saint-Étienne. Tous droits réservés.</p>
+        <p>Mentions légales · Politique de confidentialité</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
